@@ -23,10 +23,15 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/customers',
+    href: '/member',
     icon: (<UsersIcon fontSize="small" />),
-    title: 'Customers'
+    title: '회원 목록'
   },
+  // {
+  //   href: '/customers',
+  //   icon: (<UsersIcon fontSize="small" />),
+  //   title: 'Customers'
+  // },
   {
     href: '/products',
     icon: (<ShoppingBagIcon fontSize="small" />),

@@ -16,6 +16,7 @@ import {
   Typography
 } from '@mui/material';
 import { getInitials } from '../../utils/get-initials';
+import { useRouter } from "next/router";
 
 export const CustomerListResults = ({ customers, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
@@ -61,7 +62,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
   };
-
+  const router = useRouter();
   return (
     <Card {...rest}>
       <PerfectScrollbar>
@@ -98,7 +99,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {customers.map((customer) => (
                 <TableRow
                   hover
                   key={customer.id}
@@ -108,6 +109,7 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                     <Checkbox
                       checked={selectedCustomerIds.indexOf(customer.id) !== -1}
                       onChange={(event) => handleSelectOne(event, customer.id)}
+                      
                       value="true"
                     />
                   </TableCell>
@@ -127,6 +129,14 @@ export const CustomerListResults = ({ customers, ...rest }) => {
                       <Typography
                         color="textPrimary"
                         variant="body1"
+                        onClick={()=>{
+                          router.push({
+                            pathname: "/list/[id]",
+                            query: {
+                              id: customer.id,
+                            }
+                          });
+                        }}
                       >
                         {customer.name}
                       </Typography>
